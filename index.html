@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristil Store</title>
+    <link rel="icon" href="logo.png" type="image/png"> <!-- إضافة لوجو التاب -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            overflow-x: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .top-section {
+            flex: 1;
+            background-image: url('banar.jpg'); /* ضع رابط صورة البراند هنا */
+            background-size: cover; /* تظهر الصورة بالكامل */
+            background-repeat: no-repeat; /* منع تكرار الصورة */
+            background-position: center;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* عرض الصفحة بالكامل */
+        }
+        .bottom-section {
+            flex: 1;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .social-buttons a {
+            text-decoration: none;
+            font-size: 50px; /* زيادة حجم الأيقونات */
+            color: #000;
+            margin: 10px; /* إضافة هامش بين الأيقونات */
+        }
+        .social-buttons a:hover {
+            color: #007bff;
+        }
+        .follow-us-text {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .social-buttons div {
+            text-align: center;
+        }
+        .social-buttons div span {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        /* تأثيرات احتفالية */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .confetti span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            animation: fall 3s infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ريسبونسف للموبايل */
+        @media (max-width: 768px) {
+            .follow-us-text {
+                font-size: 28px;
+            }
+
+            .social-buttons a {
+                font-size: 60px; /* تكبير الأيقونات على الشاشات الصغيرة */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .follow-us-text {
+                font-size: 24px;
+            }
+
+            .social-buttons a {
+                font-size: 70px; /* تكبير الأيقونات أكثر */
+            }
+
+            .social-buttons {
+                flex-direction: row; /* عرض الأيقونات أفقيًا */
+                justify-content: center; /* محاذاة الأيقونات في المنتصف */
+            }
+        }
+
+        /* الرسالة الترحيبية */
+        #welcome-message {
+            position: fixed;
+            top: 0;
+            right: -100%; /* بداية الرسالة خارج الشاشة من اليمين */
+            transform: translateY(0);
+            font-size: 24px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            display: block;
+            animation: slideIn 3s ease-in-out forwards, slideOut 2s 3s ease-in-out forwards;
+        }
+
+        /* حركة الرسالة من اليمين إلى اليسار */
+        @keyframes slideIn {
+            0% {
+                right: -100%; /* خارج الشاشة من اليمين */
+            }
+            50% {
+                right: 50%; /* في المنتصف */
+            }
+            100% {
+                right: 0%; /* الرسالة في المكان النهائي */
+            }
+        }
+
+        /* اختفاء الرسالة بعد فترة */
+        @keyframes slideOut {
+            0% {
+                right: 0%; /* الرسالة في مكانها النهائي */
+            }
+            100% {
+                right: -100%; /* تختفي الرسالة خارج الشاشة من اليسار */
+            }
+        }
+
+        /* صورة انفجار boomb */
+        #boombImage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            display: none;
+            animation: boomEffect 2s forwards;
+        }
+
+        @keyframes boomEffect {
+            0% {
+                transform: translate(-50%, -50%) scale(1); /* بداية الصورة بالحجم الطبيعي */
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(3); /* تكبير الصورة */
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0); /* تصغير الصورة حتى تختفي */
+                opacity: 0;
+            }
+        }
+
+        /* رسالة رأس السنة */
+        #new-year-message {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF5733;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* الرسالة الخاصة بحملة السحب */
+        #raffle-message {
+            font-size: 22px;
+            color: #007bff;
+            text-decoration: underline;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الجزء العلوي الذي يحتوي على صورة البراند -->
+        <div class="top-section">
+            <!-- الصورة ستظهر بالكامل وتأخذ عرض الصفحة بالكامل -->
+        </div>
+
+        <!-- الجزء السفلي يحتوي على الأزرار -->
+        <div class="bottom-section">
+            <div class="follow-us-text">Follow us in Social Media</div>
+            <div class="social-buttons">
+                <div>
+                    <span>Website</span>
+                    <a href="https://cristil-store-s2bqk60.gamma.site" target="_blank"><i class="fas fa-globe"></i></a>
+                </div>
+                <div>
+                    <span>Facebook</span>
+                    <a href="https://www.facebook.com/profile.php?id=100056813367252" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+                <div>
+                    <span>Instagram</span>
+                    <a href="https://www.instagram.com/cristil_store15_8/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div>
+                    <span>WhatsApp</span>
+                    <a href="https://wa.me/201091001890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="confetti">
+                <!-- العناصر الاحتفالية -->
+            </div>
+            <div id="countdown" style="font-size: 28px; font-weight: bold; margin-top: 10px; text-align: center;"></div>
+            <div id="new-year-message"></div>
+            <div id="raffle-message"></div>
+            <img id="boombImage" src="boomb.png" alt="Boom">
+        </div>
+    </div>
+
+    <!-- الرسالة الترحيبية -->
+    <div id="welcome-message">🎁 Welcome to Cristil Store! 🎉</div>
+
+    <script>
+        // إنشاء تأثير الاحتفال عند تحميل الصفحة
+        const confettiContainer = document.querySelector('.confetti');
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('span');
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+            confettiContainer.appendChild(confetti);
+        }
+
+        // إظهار الرسالة الترحيبية لفترة قصيرة
+        const welcomeMessage = document.getElementById('welcome-message');
+        welcomeMessage.style.display = 'block';
+        setTimeout(() => {
+            welcomeMessage.style.display = 'none';
+        }, 9000);
+
+        // تفعيل العد التنازلي
+        const countdownElement = document.getElementById('countdown');
+        const newYearMessage = document.getElementById('new-year-message');
+        const raffleMessage = document.getElementById('raffle-message');
+        const boombImage = document.getElementById('boombImage');
+
+        let countdownDate = new Date('January 1, 2025 00:00:00').getTime();
+
+        let interval = setInterval(function() {
+            let now = new Date().getTime();
+            let distance = countdownDate - now;
+
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                countdownElement.innerHTML = 'Happy New Year! <br> الحقي السحب واكسبي معانا🙈❤️';
+                newYearMessage.style.display = 'block';
+                raffleMessage.style.display = 'block';
+                boombImage.style.display = 'block'; // يظهر صورة الانفجار عند نهاية العد التنازلي
+                setTimeout(() => {
+                    boombImage.style.display = 'none'; // تختفي بعد نهاية الحركة
+                }, 4000);
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
