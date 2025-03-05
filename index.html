@@ -1,304 +1,216 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cristil Store</title>
-    <link rel="icon" href="logo.png" type="image/png"> <!-- إضافة لوجو التاب -->
+    <link rel="icon" href="logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Orbitron', sans-serif;
             margin: 0;
             padding: 0;
-            direction: rtl;
             overflow-x: hidden;
+            background: #000; /* Pure black background */
+            color: #fff;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        .top-section {
-            flex: 1;
-            background-image: url('banar.jpg'); /* ضع رابط صورة البراند هنا */
-            background-size: cover; /* تظهر الصورة بالكامل */
-            background-repeat: no-repeat; /* منع تكرار الصورة */
-            background-position: center;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%; /* عرض الصفحة بالكامل */
-        }
-        .bottom-section {
-            flex: 1;
-            background-color: #f4f4f4;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             padding: 20px;
             position: relative;
+            overflow: hidden;
+        }
+        .follow-us-text {
+            font-size: 40px;
+            font-weight: 700;
+            color: #ffd700; /* Gold */
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            margin-bottom: 30px; /* Adjusted spacing */
+            text-align: center;
+            animation: pulseGlow 2s infinite alternate;
         }
         .social-buttons {
             display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
         .social-buttons a {
             text-decoration: none;
-            font-size: 50px; /* زيادة حجم الأيقونات */
-            color: #000;
-            margin: 10px; /* إضافة هامش بين الأيقونات */
+            font-size: 50px;
+            color: #fff;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
+            padding: 15px;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
         .social-buttons a:hover {
-            color: #007bff;
-        }
-        .follow-us-text {
-            font-size: 36px;
-            margin-bottom: 20px;
+            color: #ffd700;
+            transform: scale(1.15) rotate(8deg);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
         .social-buttons div {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .social-buttons div span {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-size: 16px;
+            color: #e0e0ff;
+            margin-top: 5px; /* Adjusted position */
+            font-weight: 500;
+            text-transform: uppercase;
         }
 
-        /* تأثيرات احتفالية */
-        .confetti {
+        /* Creative Effects */
+        .cosmic-star {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ffd700;
+            animation: twinkle 3s infinite ease-in-out;
+            z-index: 0;
         }
-        .confetti span {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: red;
-            animation: fall 3s infinite;
+        @keyframes twinkle {
+            0% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-30vh) scale(1.3); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 0.6; }
         }
-        @keyframes fall {
-            0% {
-                transform: translateY(-100%) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+            100% { text-shadow: 0 0 25px rgba(255, 215, 0, 1); }
         }
 
-        /* ريسبونسف للموبايل */
+        /* Welcome Message */
+        #welcome-message {
+            position: fixed;
+            top: 20px; /* Adjusted for mobile */
+            right: -100%;
+            font-size: 24px;
+            background: linear-gradient(90deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 10px 25px;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            z-index: 1000;
+            animation: slideIn 1.5s ease-in-out forwards, fadeOut 1s 3s ease-in-out forwards;
+        }
+        @keyframes slideIn {
+            0% { right: -100%; }
+            100% { right: 20px; }
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        /* Responsive Design for Phones */
         @media (max-width: 768px) {
             .follow-us-text {
-                font-size: 28px;
+                font-size: 32px;
+                letter-spacing: 2px;
+                margin-bottom: 25px;
             }
-
+            .social-buttons {
+                gap: 20px;
+            }
             .social-buttons a {
-                font-size: 60px; /* تكبير الأيقونات على الشاشات الصغيرة */
+                font-size: 40px;
+                padding: 12px;
+            }
+            .social-buttons div span {
+                font-size: 14px;
+            }
+            #welcome-message {
+                font-size: 20px;
+                padding: 8px 20px;
+                top: 15px;
             }
         }
-
         @media (max-width: 480px) {
             .follow-us-text {
                 font-size: 24px;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
             }
-
-            .social-buttons a {
-                font-size: 70px; /* تكبير الأيقونات أكثر */
-            }
-
             .social-buttons {
-                flex-direction: row; /* عرض الأيقونات أفقيًا */
-                justify-content: center; /* محاذاة الأيقونات في المنتصف */
+                gap: 15px;
             }
-        }
-
-        /* الرسالة الترحيبية */
-        #welcome-message {
-            position: fixed;
-            top: 0;
-            right: -100%; /* بداية الرسالة خارج الشاشة من اليمين */
-            transform: translateY(0);
-            font-size: 24px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 1000;
-            display: block;
-            animation: slideIn 3s ease-in-out forwards, slideOut 2s 3s ease-in-out forwards;
-        }
-
-        /* حركة الرسالة من اليمين إلى اليسار */
-        @keyframes slideIn {
-            0% {
-                right: -100%; /* خارج الشاشة من اليمين */
+            .social-buttons a {
+                font-size: 32px;
+                padding: 10px;
             }
-            50% {
-                right: 50%; /* في المنتصف */
+            .social-buttons div span {
+                font-size: 12px;
             }
-            100% {
-                right: 0%; /* الرسالة في المكان النهائي */
+            #welcome-message {
+                font-size: 18px;
+                padding: 6px 15px;
+                top: 10px;
+                right: 10px; /* Adjusted for smaller screens */
             }
-        }
-
-        /* اختفاء الرسالة بعد فترة */
-        @keyframes slideOut {
-            0% {
-                right: 0%; /* الرسالة في مكانها النهائي */
-            }
-            100% {
-                right: -100%; /* تختفي الرسالة خارج الشاشة من اليسار */
-            }
-        }
-
-        /* صورة انفجار boomb */
-        #boombImage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            display: none;
-            animation: boomEffect 2s forwards;
-        }
-
-        @keyframes boomEffect {
-            0% {
-                transform: translate(-50%, -50%) scale(1); /* بداية الصورة بالحجم الطبيعي */
-                opacity: 1;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(3); /* تكبير الصورة */
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0); /* تصغير الصورة حتى تختفي */
-                opacity: 0;
-            }
-        }
-
-        /* رسالة رأس السنة */
-        #new-year-message {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FF5733;
-            margin-top: 20px;
-            display: none;
-        }
-
-        /* الرسالة الخاصة بحملة السحب */
-        #raffle-message {
-            font-size: 22px;
-            color: #007bff;
-            text-decoration: underline;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <!-- الجزء العلوي الذي يحتوي على صورة البراند -->
-        <div class="top-section">
-            <!-- الصورة ستظهر بالكامل وتأخذ عرض الصفحة بالكامل -->
-        </div>
-
-        <!-- الجزء السفلي يحتوي على الأزرار -->
-        <div class="bottom-section">
-            <div class="follow-us-text">Follow us in Social Media</div>
-            <div class="social-buttons">
-                <div>
-                    <span>Website</span>
-                    <a href="https://cristil-store-s2bqk60.gamma.site" target="_blank"><i class="fas fa-globe"></i></a>
-                </div>
-                <div>
-                    <span>Facebook</span>
-                    <a href="https://www.facebook.com/profile.php?id=100056813367252" target="_blank"><i class="fab fa-facebook"></i></a>
-                </div>
-                <div>
-                    <span>Instagram</span>
-                    <a href="https://www.instagram.com/cristil_store15_8/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div>
-                    <span>WhatsApp</span>
-                    <a href="https://wa.me/201091001890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
+        <div class="follow-us-text">Join Our Luxe Galaxy</div>
+        <div class="social-buttons">
+            <div>
+                <a href="https://cristil-store-s2bqk60.gamma.site" target="_blank"><i class="fas fa-globe"></i></a>
+                <span>Website</span>
             </div>
-            <div class="confetti">
-                <!-- العناصر الاحتفالية -->
+            <div>
+                <a href="https://www.facebook.com/profile.php?id=100056813367252" target="_blank"><i class="fab fa-facebook"></i></a>
+                <span>Facebook</span>
             </div>
-            <div id="countdown" style="font-size: 28px; font-weight: bold; margin-top: 10px; text-align: center;"></div>
-            <div id="new-year-message"></div>
-            <div id="raffle-message"></div>
-            <img id="boombImage" src="boomb.png" alt="Boom">
+            <div>
+                <a href="https://www.instagram.com/cristil_store15_8/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <span>Instagram</span>
+            </div>
+            <div>
+                <a href="https://wa.me/201091001890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <span>WhatsApp</span>
+            </div>
         </div>
     </div>
 
-    <!-- الرسالة الترحيبية -->
-    <div id="welcome-message">🎁 Welcome to Cristil Store! 🎉</div>
+    <div id="welcome-message">✨ Welcome to Cristil Store! 🌟</div>
 
     <script>
-        // إنشاء تأثير الاحتفال عند تحميل الصفحة
-        const confettiContainer = document.querySelector('.confetti');
-        for (let i = 0; i < 100; i++) {
-            const confetti = document.createElement('span');
-            confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-            confettiContainer.appendChild(confetti);
+        // Adding cosmic star effects
+        const container = document.querySelector('.container');
+        for (let i = 0; i < 15; i++) {
+            const star = document.createElement('div');
+            star.className = 'cosmic-star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(star);
         }
 
-        // إظهار الرسالة الترحيبية لفترة قصيرة
+        // Welcome message control
         const welcomeMessage = document.getElementById('welcome-message');
-        welcomeMessage.style.display = 'block';
         setTimeout(() => {
             welcomeMessage.style.display = 'none';
-        }, 9000);
-
-        // تفعيل العد التنازلي
-        const countdownElement = document.getElementById('countdown');
-        const newYearMessage = document.getElementById('new-year-message');
-        const raffleMessage = document.getElementById('raffle-message');
-        const boombImage = document.getElementById('boombImage');
-
-        let countdownDate = new Date('January 1, 2025 00:00:00').getTime();
-
-        let interval = setInterval(function() {
-            let now = new Date().getTime();
-            let distance = countdownDate - now;
-
-            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                countdownElement.innerHTML = 'Happy New Year! <br> الحقي السحب واكسبي معانا🙈❤️';
-                newYearMessage.style.display = 'block';
-                raffleMessage.style.display = 'block';
-                boombImage.style.display = 'block'; // يظهر صورة الانفجار عند نهاية العد التنازلي
-                setTimeout(() => {
-                    boombImage.style.display = 'none'; // تختفي بعد نهاية الحركة
-                }, 4000);
-            }
-        }, 1000);
+        }, 4500);
     </script>
-
 </body>
 </html>
