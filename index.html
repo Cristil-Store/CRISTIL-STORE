@@ -14,7 +14,7 @@
             padding: 0;
             overflow-x: hidden;
             background: #1A2B26; /* أخضر داكن */
-            color: #D4AF37; /* ذهبي هادئ */
+            color: #a7954a; /* اللون الجديد */
         }
         .container {
             min-height: 100vh;
@@ -26,13 +26,24 @@
             position: relative;
             overflow: hidden;
         }
+        .logo {
+            width: 200px; /* اضبط الحجم حسب الحاجة */
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(167, 149, 74, 0.8); /* اللون الجديد في RGBA */
+        }
         .follow-us-text {
             font-size: 40px;
             font-weight: 700;
-            color: #D4AF37; /* ذهبي هادئ */
+            color: #a7954a; /* اللون الجديد */
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+            text-shadow: 0 0 15px rgba(167, 149, 74, 0.8); /* اللون الجديد في RGBA */
             margin-bottom: 30px;
             text-align: center;
             animation: pulseGlow 2s infinite alternate;
@@ -48,18 +59,18 @@
         .social-buttons a {
             text-decoration: none;
             font-size: 50px;
-            color: #D4AF37; /* ذهبي هادئ */
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+            color: #a7954a; /* اللون الجديد */
+            background: radial-gradient(circle, rgba(167, 149, 74, 0.2), transparent); /* اللون الجديد في RGBA */
             padding: 15px;
             border-radius: 50%;
             transition: all 0.5s ease;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 10px rgba(167, 149, 74, 0.3); /* اللون الجديد في RGBA */
         }
         .social-buttons a:hover {
-            color: #D4AF37; /* ذهبي هادئ */
+            color: #a7954a; /* اللون الجديد */
             transform: scale(1.15) rotate(8deg);
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.4), transparent);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            background: radial-gradient(circle, rgba(167, 149, 74, 0.4), transparent); /* اللون الجديد في RGBA */
+            box-shadow: 0 0 20px rgba(167, 149, 74, 0.6); /* اللون الجديد في RGBA */
         }
         .social-buttons div {
             display: flex;
@@ -68,7 +79,7 @@
         }
         .social-buttons div span {
             font-size: 16px;
-            color: #D4AF37; /* ذهبي هادئ */
+            color: #a7954a; /* اللون الجديد */
             margin-top: 5px;
             font-weight: 500;
             text-transform: uppercase;
@@ -77,9 +88,9 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: #D4AF37; /* ذهبي هادئ */
+            background: #a7954a; /* اللون الجديد */
             border-radius: 50%;
-            box-shadow: 0 0 8px #D4AF37;
+            box-shadow: 0 0 8px #a7954a; /* اللون الجديد */
             animation: twinkle 3s infinite ease-in-out;
             z-index: 0;
         }
@@ -89,23 +100,23 @@
             100% { transform: translateY(0) scale(1); opacity: 0.6; }
         }
         @keyframes pulseGlow {
-            0% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.8); }
-            100% { text-shadow: 0 0 25px rgba(212, 175, 55, 1); }
+            0% { text-shadow: 0 0 15px rgba(167, 149, 74, 0.8); } /* اللون الجديد في RGBA */
+            100% { text-shadow: 0 0 25px rgba(167, 149, 74, 1); } /* اللون الجديد في RGBA */
         }
         #welcome-message {
             position: fixed;
             top: 20px;
             right: -100%;
             font-size: 24px;
-            background: linear-gradient(90deg, #D4AF37, #D4AF37); /* ذهبي هادئ */
+            background: linear-gradient(90deg, #a7954a, #a7954a); /* اللون الجديد */
             -webkit-background-clip: text;
             -moz-background-clip: text;
             background-clip: text;
             color: transparent;
             padding: 10px 25px;
-            border: 2px solid #D4AF37; /* ذهبي هادئ */
+            border: 2px solid #a7954a; /* اللون الجديد */
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 20px rgba(167, 149, 74, 0.5); /* اللون الجديد في RGBA */
             z-index: 1000;
             animation: slideIn 1.5s ease-in-out forwards, fadeOut 1s 3s ease-in-out forwards;
         }
@@ -118,6 +129,9 @@
             100% { opacity: 0; display: none; }
         }
         @media (max-width: 768px) {
+            .logo {
+                width: 120px; /* تصغير اللوجو للشاشات المتوسطة */
+            }
             .follow-us-text {
                 font-size: 32px;
                 letter-spacing: 2px;
@@ -140,6 +154,9 @@
             }
         }
         @media (max-width: 480px) {
+            .logo {
+                width: 200px; /* تصغير اللوجو للشاشات الصغيرة */
+            }
             .follow-us-text {
                 font-size: 24px;
                 letter-spacing: 1px;
@@ -166,10 +183,11 @@
 </head>
 <body>
     <div class="container">
+        <img src="logo.png" alt="Cristil Store Logo" class="logo">
         <div class="follow-us-text">Join Our Luxe Galaxy</div>
         <div class="social-buttons">
             <div>
-                <a href="https://cristilstore.pythonanywhere.com" target="_blank"><i class="fas fa-globe"></i></a>
+                <a href="https://cristil-store-s2bqk60.gamma.site" target="_blank"><i class="fas fa-globe"></i></a>
                 <span>Website</span>
             </div>
             <div>
